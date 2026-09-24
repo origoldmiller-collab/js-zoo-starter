@@ -20,7 +20,7 @@ class Tiger extends Animal {
     super (name, "meat")
   }
 }
-class Bear  {
+class Bear extends Animal {
   constructor(name) {
     super (name , "fish")
   }
@@ -28,7 +28,52 @@ class Bear  {
     console.log(this.name + " hibernates for 4 months")
   }
 }
-
+class Unicorn extends Animal {
+  constructor(name) {
+    super (name, "marshmallows")
+  }
+  sleep() {
+    console.log(this.name + " sleeps in a cloud")
+  }
+}
+class Giraffe extends Animal {
+  constructor(name) {
+    super (name, "leaves")
+  }
+  eat (food){
+    if (food == this.favoriteFood){
+      super.eat(food)
+    } else {
+      console.log("YUCK!!! " + this.name + " will not eat " + this.favoriteFood);
+    }
+  }
+}
+class Bee extends Animal {
+  constructor(name) {
+    super (name, "pollen")
+  }
+  eat (food){
+    if (food == this.favoriteFood){
+      super.eat(food)
+    } else {
+      console.log("YUCK!!! " + this.name + " will not eat " + this.favoriteFood);
+    }
+  }
+  sleep (){
+    console.log(this.name + " does not sleep")
+  }
+}
+class Zookeeper {
+  constructor(name){
+    this.name = name
+  }
+  feedAnimals(arrayOfAnmls, food){
+    console.log(this.name + " is feeding " + food + " to " + arrayOfAnmls.length + " animals");
+    for (let i  = 0; i < arrayOfAnmls.length; i++){
+      arrayOfAnmls[i].eat(food)
+    }
+  }
+}
 function run() {
  var tigger = new Tiger("Tigger", "meat");
 tigger.eat("meat");
@@ -36,6 +81,20 @@ tigger.eat("kibble");
 var pooh = new Bear("Pooh", "fish");
 pooh.eat("fish");
 pooh.eat("meat");
-
+var rarity = new Unicorn("Rarity", "marshmallows");
+rarity.eat("marshmallows");
+rarity.eat("meat");
+rarity.sleep();
+var gemma = new Giraffe("Gemma" , "leaves");
+gemma.eat("meat");
+gemma.eat("leaves");
+gemma.sleep();
+var stinger = new Bee("Stinger" , "pollen");
+stinger.eat("meat");
+stinger.eat("pollen");
+stinger.sleep();
+let arrayOfinstances = [tigger, pooh , rarity , gemma , stinger]
+var zooBot = new Zookeeper("zoeBot")
+zooBot.feedAnimals(arrayOfinstances, "mushrooms")
 }
 run();
