@@ -1,9 +1,11 @@
 //starter code
 //python -m http.server
+var animalPop = 0
 class Animal  {
   constructor(name , favFood) {
     this.name = name;
     this.favoriteFood = favFood;
+    animalPop++
   }
   sleep() {
     console.log(this.name + " sleeps for 8 hours")
@@ -13,6 +15,9 @@ class Animal  {
     if (food == this.favoriteFood){
       console.log("YUM!!! " + this.name + " wants more " + food);
     }
+  }
+  static getPopulation() {
+	  return animalPop;
   }
 }
 class Tiger extends Animal {
@@ -68,7 +73,7 @@ class Zookeeper {
     this.name = name
   }
   feedAnimals(arrayOfAnmls, food){
-    console.log(this.name + " is feeding " + food + " to " + arrayOfAnmls.length + " animals");
+    console.log(this.name + " is feeding " + food + " to " + arrayOfAnmls.length + " animals of " + Animal.getPopulation() + " animals");
     for (let i  = 0; i < arrayOfAnmls.length; i++){
       arrayOfAnmls[i].eat(food)
     }
@@ -94,7 +99,8 @@ stinger.eat("meat");
 stinger.eat("pollen");
 stinger.sleep();
 let arrayOfinstances = [tigger, pooh , rarity , gemma , stinger]
-var zooBot = new Zookeeper("zoeBot")
-zooBot.feedAnimals(arrayOfinstances, "mushrooms")
+var zooBot = new Zookeeper("zoeBot");
+zooBot.feedAnimals(arrayOfinstances, "mushrooms");
+console.log(Animal.getPopulation())
 }
 run();
